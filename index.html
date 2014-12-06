@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>Average Ages of the World</title>
+<link rel="stylesheet" href="d3.slider.css" />  
+<style type="text/css">
+#legend {
+    padding: 1.5em 0 0 1.5em;
+}
+#inner {
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+li.key {
+    border-top-width: 15px;
+    border-top-style: solid;
+    font-size: .75em;
+    width: 10%;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+path.land {
+    fill: #eee;
+    stroke: #ddd;
+}
+
+path.state {
+    stroke: #eee;
+    stroke-width: 1;
+}
+</style>
+<style>
+.country:hover{
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+.text{
+  font-size:10px;
+  text-transform:capitalize;
+}
+
+
+#container {
+  margin:10px 10%;
+  border:2px solid #000;
+  border-radius: 5px;
+  height:100%;
+  overflow:hidden;
+  background: #F0F8FF;
+}
+ #slider1 {
+     width: 50%;
+    margin: 0 auto;
+    }
+
+.hidden { 
+  display: none; 
+}
+div.tooltip {
+  color: #222; 
+  background: #fff; 
+  padding: .5em; 
+  text-shadow: #f5f5f5 0 1px 0;
+  border-radius: 2px; 
+  box-shadow: 0px 0px 2px 0px #a6a6a6; 
+  opacity: 0.9; 
+  position: absolute;
+}
+.graticule {
+  fill: none;
+  stroke: #bbb;
+  stroke-width: .5px;
+  stroke-opacity: .5;
+}
+.equator {
+  stroke: #ccc;
+  stroke-width: 1px;
+}
+
+.q0-9 { fill:rgb(204,229,255); }
+.q1-9 { fill:rgb(153,204,255); }
+.q2-9 { fill:rgb(102,178,255); }
+.q3-9 { fill:rgb(51,153,255); }
+.q4-9 { fill:rgb(0,128,255); }
+.q5-9 { fill:rgb(0,102,204); }
+.q6-9 { fill:rgb(0,76,153); }
+.q7-9 { fill:rgb(0,51,102); }
+.q8-9 { fill:rgb(0,102,102); }
+.q9-9 { fill:rgb(0,153,153); }
+.q10-9 { fill:rgb(0,204,204); }
+.q11-9 { fill:rgb(0,255,255); }
+.q12-9 { fill:rgb(158,154,200); }
+.q13-9 { fill:rgb(117,107,177); }
+.q14-9 { fill:rgb(84,39,143); }
+
+
+
+</style>
+</head>
+<body>
+
+  <h1>Average Ages of the World</h1>
+ 
+ 
+<div id="slider1"></div>
+<div id="inner">
+<span style="height: 35px; width: 200px; background-color: #CCE5FF">15-17</span>
+<span style="height: 35px; width: 200px; background-color: #99CCFF">17-19</span>
+<span style="height: 35px; width: 200px; background-color: #66B2FF">19-21</span>
+<span style="height: 35px; width: 200px; background-color: #3399FF">21-23</span>
+
+<span style="height: 35px; width: 200px; background-color: #0080FF">23-25</span>
+<span style="height: 35px; width: 200px; background-color: #0066CC">25-27</span>
+<span style="height: 35px; width: 200px; background-color: #004C99">27-29</span>
+
+<span style="height: 35px; width: 200px; background-color: #003366">29-31</span>
+<span style="height: 35px; width: 200px; background-color: #006666">31-33</span>
+<span style="height: 35px; width: 200px; background-color: #009999">33-35</span>
+<span style="height: 35px; width: 200px; background-color: #00CCCC">35-37</span>
+<span style="height: 35px; width: 200px; background-color: #00FFFF">37-39</span>
+<span style="height: 35px; width: 200px; background-color: #9E9AC8">39-41</span>
+<span style="height: 35px; width: 200px; background-color: #756BB1">41-43</span>
+<span style="height: 35px; width: 200px; background-color: #54278F">43-45</span>
+</div>
+  <div id="container"></div>
+  
+
+<script src="js/d3.min.js"></script>
+<script src="http://d3js.org/queue.v1.min.js"></script>
+<script src="js/topojson.v1.min.js"></script>
+<script src="js/d3.slider.js"></script>
+
+<script>
+d3.select(window).on("resize", throttle);
+d3.select('#slider1').call(d3.slider().axis(d3.svg.axis().orient("top")).min(1950).max(2010).step(5).on("slide",function(evt,value){
+  
+
+  queue()
+  .defer(d3.csv,"data/498data/"+value+"data.csv", function(d){rateById.set(d['name'],d['age']);
+  }).await(redraw);
+}));
+var quantize = d3.scale.quantize()
+    .domain([15, 45])
+    .range(d3.range(15).map(function(i) { return "q" + i + "-9"; }));
+
+var rateById = d3.map();
+
+var zoom = d3.behavior.zoom()
+    .scaleExtent([1, 9])
+    .on("zoom", move);d3.svg.axis().orient("top")
+
+
+var legend = d3.select('#legend')
+  .append('ul')
+    .attr('class', 'list-inline');
+
+var keys = legend.selectAll('li.key')
+    .data(quantize.range());
+
+keys.enter().append('li')
+    .attr('class', 'key')
+    .style('border-top-color', String)
+    .text(function(d) {
+        var r = quantize.invertExtent(d);
+        return r[0];
+    });
+
+var width = document.getElementById('container').offsetWidth;
+var height = width / 2;
+
+var topo,projection,path,svg,g;
+
+var graticule = d3.geo.graticule();
+
+var tooltip = d3.select("#container").append("div").attr("class", "tooltip hidden");
+
+setup(width,height);
+
+function setup(width,height){
+
+  projection = d3.geo.mercator()
+    .translate([(width/2), (height/2)])
+    .scale( width / 2 / Math.PI);
+
+  path = d3.geo.path().projection(projection);
+
+  svg = d3.select("#container").append("svg")
+      .attr("width", width)
+      .attr("height", height)
+      .call(zoom)
+      .on("click", click)
+      .append("g");
+
+  g = svg.append("g");
+
+  /*var legend = svg.append("g")
+  .attr("class","legend")
+  .attr("transform","translate(50,30)")
+  .style("font-size","12px")
+  .call(d3.legend)*/
+
+}
+queue()
+    .defer(d3.json, "data/topo_min.json")
+    .defer(d3.csv,"data/498data/1950data.csv", function(d){rateById.set(d['name'],d['age']);})
+    .await(draw);
+//d3.json("data/world-topo-min.json", function(error, world) {
+
+//  var countries = topojson.feature(world, world.objects.countries).features;
+
+//  topo = countries;
+//  d3.csv("data/498data/1950data.csv", function(d){console.log(d['name']);rateById.set(d['name'],d['age']);}).data();
+ // draw(topo);
+
+//});
+
+function draw(error,topo_min) {
+  if(topo_min&& topo_min.objects){
+    var countries = topojson.feature(topo_min, topo_min.objects.countries).features;
+
+    topo = countries;
+  }else{
+    /*
+    path = d3.geo.path().projection(projection);
+    svg = d3.select("#container").append("svg")
+      .attr("width", width)
+      .attr("height", height)
+      .call(zoom)
+      .on("click", click)
+      .append("g");
+
+      g = svg.append("g");
+      */
+  }
+
+  svg.append("path")
+     .datum(graticule)
+     .attr("class", "graticule")
+     .attr("d", path);
+
+
+  g.append("path")
+   .datum({type: "LineString", coordinates: [[-180, 0], [-90, 0], [0, 0], [90, 0], [180, 0]]})
+   .attr("class", "equator")
+   .attr("d", path);
+
+
+  var country = g.selectAll(".country").data(topo);
+
+  country.enter().insert("path")
+      .attr("class", "country")
+      .attr("d", path)
+      .attr("id", function(d,i) { return d.id; })
+      .attr("title", function(d,i) { return d.properties.name; })
+      .attr("class", function(d) {return quantize(rateById.get(d.properties.name)); });
+
+  //offsets for tooltips
+  var offsetL = document.getElementById('container').offsetLeft+20;
+  var offsetT = document.getElementById('container').offsetTop+10;
+
+  //tooltips
+  country
+    .on("mousemove", function(d,i) {
+
+      var mouse = d3.mouse(svg.node()).map( function(d) { return parseInt(d); } );
+
+      tooltip.classed("hidden", false)
+             .attr("style", "left:"+(mouse[0]+offsetL)+"px;top:"+(mouse[1]+offsetT)+"px")
+             .html(d.properties.name);
+
+      })
+      .on("mouseout",  function(d,i) {
+        tooltip.classed("hidden", true);
+      }); 
+
+      
+  //EXAMPLE: adding some capitals from external CSV file
+ 
+
+}
+
+
+function redraw() {
+  width = document.getElementById('container').offsetWidth;
+  height = width / 2;
+  d3.select('svg').remove();
+  setup(width,height);
+  draw();
+}
+
+
+function move() {
+
+  var t = d3.event.translate;
+  var s = d3.event.scale; 
+  zscale = s;
+  var h = height/4;
+
+
+  t[0] = Math.min(
+    (width/height)  * (s - 1), 
+    Math.max( width * (1 - s), t[0] )
+  );
+
+  t[1] = Math.min(
+    h * (s - 1) + h * s, 
+    Math.max(height  * (1 - s) - h * s, t[1])
+  );
+
+  zoom.translate(t);
+  g.attr("transform", "translate(" + t + ")scale(" + s + ")");
+
+  //adjust the country hover stroke width based on zoom level
+  d3.selectAll(".country").style("stroke-width", 1.5 / s);
+
+}
+
+
+
+var throttleTimer;
+function throttle() {
+  window.clearTimeout(throttleTimer);
+    throttleTimer = window.setTimeout(function() {
+      redraw();
+    }, 200);
+}
+
+
+//geo translation on mouse click in map
+function click() {
+  var latlon = projection.invert(d3.mouse(this));
+  console.log(latlon);
+}
+
+
+//function to add points and text to the map (used in plotting capitals)
+function addpoint(lat,lon,text) {
+
+  var gpoint = g.append("g").attr("class", "gpoint");
+  var x = projection([lat,lon])[0];
+  var y = projection([lat,lon])[1];
+
+  gpoint.append("svg:circle")
+        .attr("cx", x)
+        .attr("cy", y)
+        .attr("class","point")
+        .attr("r", 1.5);
+
+  //conditional in case a point has no associated text
+  if(text.length>0){
+
+    gpoint.append("text")
+          .attr("x", x+2)
+          .attr("y", y+2)
+          .attr("class","text")
+          .text(text);
+  }
+
+}
+
+</script>
+</body>
+</html>

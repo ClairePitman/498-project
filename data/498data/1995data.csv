@@ -1,0 +1,237 @@
+Index,name,id,age
+1,WORLD,900,25.1
+2,More developed regions,901,35.8
+3,Less developed regions,902,22.8
+4,Least developed countries,941,17.9
+5,Less developed regions; excluding least developed countries,934,23.6
+6,Less developed regions; excluding China,948,21.1
+7,Sub-Saharan Africa,947,17.5
+8,AFRICA,903,18
+9,Eastern Africa,910,16.9
+10,Burundi,108,15.3
+11,Comoros,174,18
+12,Djibouti,262,18
+13,Eritrea,232,15.2
+14,Ethiopia,231,16.7
+15,Kenya,404,16.6
+16,Madagascar,450,17.4
+17,Malawi,454,17.4
+18,Mauritius,480,26.8
+19,Mayotte,175,17.2
+20,Mozambique,508,17.7
+21,Réunion,638,26.1
+22,Rwanda,646,17.6
+23,Seychelles,690,25.4
+24,Somalia,706,17.1
+25,South Sudan,728,17.7
+26,Uganda,800,15.6
+27,United Republic of Tanzania,834,17.1
+28,Zambia,894,17
+29,Zimbabwe,716,17.4
+30,Middle Africa,911,16.8
+31,Angola,24,16.1
+32,Cameroon,120,16.8
+33,Central African Republic,140,18.4
+34,Chad,148,15.8
+35,Congo,178,18.4
+36,Democratic Republic of the Congo,180,16.8
+37,Equatorial Guinea,226,21.1
+38,Gabon,266,19.2
+39,Sao Tome and Principe,678,16.2
+40,Northern Africa,912,20
+41,Algeria,12,19.3
+42,Egypt,818,21.1
+43,Libya,434,20.2
+44,Morocco,504,20.5
+45,Sudan,729,17.5
+46,Tunisia,788,22.6
+47,Western Sahara,732,21.4
+48,Southern Africa,913,21.3
+49,Botswana,72,18.6
+50,Lesotho,426,18.5
+51,Namibia,516,18.6
+52,South Africa,710,21.7
+53,Swaziland,748,16.1
+54,Western Africa,914,17.6
+55,Benin,204,17.2
+56,Burkina Faso,854,16.3
+57,Cape Verde,132,17.5
+58,Côte d'Ivoire,384,18.3
+59,Gambia,270,16.6
+60,Ghana,288,18.4
+61,Guinea,324,17.9
+62,Guinea-Bissau,624,17.7
+63,Liberia,430,17.8
+64,Mali,466,16.7
+65,Mauritania,478,17.8
+66,Niger,562,16.2
+67,Nigeria,566,17.7
+68,Senegal,686,16.8
+69,Sierra Leone,694,17.8
+70,Togo,768,16.9
+71,ASIA,935,24.3
+72,Eastern Asia,906,27.8
+73,China,156,26.9
+74,China; Hong Kong SAR,344,33.6
+75,China; Macao SAR,446,31
+76,Dem. People's Republic of Korea,408,27.4
+77,Japan,392,39.6
+78,Mongolia,496,20.3
+79,Republic of Korea,410,29.5
+80,Other non-specified areas,158,29.5
+81,South-Central Asia,921,21.2
+82,Central Asia,5500,21.6
+83,Kazakhstan,398,27
+84,Kyrgyzstan,417,21.5
+85,Tajikistan,762,17.9
+86,Turkmenistan,795,20.2
+87,Uzbekistan,860,19.7
+88,Southern Asia,5501,21.2
+89,Afghanistan,4,15.9
+90,Bangladesh,50,19.6
+91,Bhutan,64,17.8
+92,India,356,22.1
+93,Iran (Islamic Republic of),364,18.5
+94,Maldives,462,16.9
+95,Nepal,524,19.1
+96,Pakistan,586,18.3
+97,Sri Lanka,144,25.8
+98,South-Eastern Asia,920,22.6
+99,Brunei Darussalam,96,24.2
+100,Cambodia,116,17.4
+101,Indonesia,360,22.8
+102,Lao People's Democratic Republic,418,17.6
+103,Malaysia,458,22.5
+104,Myanmar,104,22.3
+105,Philippines,608,19.8
+106,Singapore,702,31.8
+107,Thailand,764,26.6
+108,Timor-Leste,626,19.6
+109,Viet Nam,704,22.2
+110,Western Asia,922,21.1
+111,Armenia,51,29.2
+112,Azerbaijan,31,24.2
+113,Bahrain,48,26.4
+114,Cyprus,196,31
+115,Georgia,268,32.6
+116,Iraq,368,17.5
+117,Israel,376,27.3
+118,Jordan,400,19.1
+119,Kuwait,414,27.7
+120,Lebanon,422,24.5
+121,Oman,512,20.4
+122,Qatar,634,29.5
+123,Saudi Arabia,682,19.8
+124,State of Palestine,275,15.8
+125,Syrian Arab Republic,760,17.6
+126,Turkey,792,23.2
+127,United Arab Emirates,784,27.8
+128,Yemen,887,14.9
+129,EUROPE,908,36
+130,Eastern Europe,923,35.1
+131,Belarus,112,34.6
+132,Bulgaria,100,38.3
+133,Czech Republic,203,36.2
+134,Hungary,348,37.5
+135,Poland,616,33.9
+136,Republic of Moldova,498,30.8
+137,Romania,642,34.6
+138,Russian Federation,643,35
+139,Slovakia,703,32.5
+140,Ukraine,804,36.2
+141,Northern Europe,924,36.5
+142,Channel Islands,830,36.9
+143,Denmark,208,37.7
+144,Estonia,233,36.4
+145,Finland,246,37.8
+146,Iceland,352,31.5
+147,Ireland,372,31
+148,Latvia,428,36.3
+149,Lithuania,440,34
+150,Norway,578,36.1
+151,Sweden,752,38.5
+152,United Kingdom,826,36.5
+153,Southern Europe,925,36.4
+154,Albania,8,24.5
+155,Bosnia and Herzegovina,70,33.1
+156,Croatia,191,37.5
+157,Greece,300,37.1
+158,Italy,380,38.5
+159,Malta,470,34
+160,Montenegro,499,32
+161,Portugal,620,35.9
+162,Serbia,688,34
+163,Slovenia,705,36.2
+164,Spain,724,35.6
+165,TFYR Macedonia,807,31
+166,Western Europe,926,37.3
+167,Austria,40,36.3
+168,Belgium,56,37.6
+169,France,250,36.2
+170,Germany,276,38.3
+171,Luxembourg,442,36.7
+172,Netherlands,528,35.8
+173,Switzerland,756,37.2
+174,LATIN AMERICA AND THE CARIBBEAN,904,23
+175,Caribbean,915,25.1
+176,Antigua and Barbuda,28,27.5
+177,Aruba,533,32.5
+178,Bahamas,44,25
+179,Barbados,52,30.7
+180,Cuba,192,30.1
+181,Curaçao,531,31.9
+182,Dominican Republic,214,21.4
+183,Grenada,308,20.9
+184,Guadeloupe,312,29.6
+185,Haiti,332,18.5
+186,Jamaica,388,23.2
+187,Martinique,474,31.4
+188,Puerto Rico,630,30.4
+189,Saint Lucia,662,23.1
+190,Saint Vincent and the Grenadines,670,22.3
+191,Trinidad and Tobago,780,25.7
+192,United States Virgin Islands,850,30.7
+193,Central America,916,20.9
+194,Belize,84,18.4
+195,Costa Rica,188,23.7
+196,El Salvador,222,19.8
+197,Guatemala,320,17.3
+198,Honduras,340,17.6
+199,Mexico,484,21.5
+200,Nicaragua,558,17.6
+201,Panama,591,23.1
+202,South America,931,23.7
+203,Argentina,32,27.3
+204,Bolivia (Plurinational State of),68,19.5
+205,Brazil,76,24
+206,Chile,152,27.1
+207,Colombia,170,22.6
+208,Ecuador,218,21.7
+209,French Guiana,254,23.9
+210,Guyana,328,22.1
+211,Paraguay,600,19.7
+212,Peru,604,21.6
+213,Suriname,740,24.5
+214,Uruguay,858,31.1
+215,Venezuela (Bolivarian Republic of),862,22.1
+216,NORTHERN AMERICA,905,34.2
+217,Canada,124,34.8
+218,United States of America,840,34.1
+219,OCEANIA,909,29.7
+220,Australia/New Zealand,927,33.5
+221,Australia,36,33.7
+222,New Zealand,554,32.6
+223,Melanesia,928,19.4
+224,Fiji,242,21.6
+225,New Caledonia,540,25.5
+226,Papua New Guinea,598,19.1
+227,Solomon Islands,90,17.9
+228,Vanuatu,548,18.5
+229,Micronesia,954,22.8
+230,Guam,316,26.3
+231,Kiribati,296,19.8
+232,Micronesia (Fed. States of),583,17.8
+233,Polynesia,957,21.3
+234,French Polynesia,258,23.6
+235,Samoa,882,19.1
+236,Tonga,776,19.9
